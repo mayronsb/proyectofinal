@@ -1,0 +1,776 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #cccccc;
+    font-family: sans-serif;
+    font-size: 18px;
+
+}
+
+.header {
+    background-color: white;
+    padding: 0;
+    height: 100px;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: 992px;
+    margin: 0 auto;
+    border: none;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link-2{
+    text-decoration: red;
+    color: red;
+}
+
+.logo2{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 auto;
+    line-height: 90px;
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 auto;
+    line-height: 90px;
+}
+
+.nav-menu{
+    display: flex;
+    list-style: none;
+    margin-right: 40px;
+}
+
+.nav-menu-item{
+    font-size: 18px;
+    margin: 10px;
+    line-height: 40px;
+}
+
+.nav-menu-link{
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.nav-menu-link:hover{
+    background-color: red;
+    transition: 0.5s;
+}
+
+.inicio{
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+.seccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://scontent.fsyq3-1.fna.fbcdn.net/v/t1.6435-9/139273839_2109861989196543_331432215976215901_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=LO2_Qtp7hzoAX-hAYtS&_nc_ht=scontent.fsyq3-1.fna&oh=00_AfDIBLQ_QyEVzxxbE2ZRHHvSB4mV-LfdB2yxhyJlDbMdRA&oe=65661F3A');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.seccion::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+.titulo {
+    line-height: 30px;
+    margin-bottom: 0;
+}
+
+.titulo-con-boton h2 {
+    margin: 0;
+}
+
+.formato{
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+aside{
+    position: fixed;
+    text-align: center;
+    background-color: #242424;
+    top: 90px;
+    left: 0;
+    bottom: 20px;
+    width: 20%;
+}
+
+aside2{
+    position: fixed;
+    text-align: center;
+    background-color: #242424;
+    top: 90px;
+    left: 0;
+    bottom: 20px;
+    width: 20%;
+}
+
+.btn-ver-mas {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    margin-top: 10px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    line-height: 50px;
+    text-decoration: none;
+}
+
+.seccion, .titulo-con-boton, h2, a {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    margin: 0;
+}
+
+.encabezado-descripcion {
+    text-align: center;
+    color: black;
+    background-color: white;
+    padding: 20px 0;
+}
+
+.encabezado-descripcion h3 {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.encabezado-descripcion p {
+    color: red;
+    font-size: 20px;
+}
+
+.servicios {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: center;
+}
+
+.servicio img {
+    width: 100%;
+    height: auto;
+}
+
+.servicio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.servicio p {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+}
+
+.servicio-descripcion {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 16px;
+    color: black;
+    text-align: left;
+}
+
+.servicio-titulo {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.solicitar {
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.nav-menu-link.agendar {
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+}
+
+.nav-menu-link.agendar:hover {
+    background-color: #ff0000;
+}
+
+.politicas-redes {
+    background-color: #cccccc;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.politicas {
+    flex: 1;
+}
+
+.redes-sociales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.redes-sociales a {
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+.redes-sociales a i {
+    font-size: 32px;
+    color: black;
+}
+
+.redes-sociales a:hover i {
+    color: red;
+}
+
+.politicas a {
+    text-decoration: none;
+    color: black;
+}
+
+.politicas a:hover {
+    text-decoration: underline;
+}
+
+#servicios-galeria {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 20px;
+    align-items: normal; /* Centra los servicios horizontalmente */
+
+}
+
+.imagenes-servicio-galeria {
+    display: flex;
+    flex-direction: row; /* Muestra las imágenes en fila */
+    align-items: center;
+    gap: 10px;
+
+}
+
+
+.servicio-galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+.servicio-galeria h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+
+}
+
+.imagen-servicio-galeria {
+    max-width: 300px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.imagen-servicio-galeria:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.seccion-galeriainicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://scontent.fsyq3-1.fna.fbcdn.net/v/t1.6435-9/51762700_1393594910823258_5862995375425585152_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7f8c78&_nc_ohc=-M6XGThr28sAX8ki0_-&_nc_ht=scontent.fsyq3-1.fna&oh=00_AfCOCag9u26_xOT2A0ybphB5M98yaZBa3yL8f1aRBQt69Q&oe=65668F25');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+
+}
+
+.seccion-galeriainicio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton-galeria {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 60px;
+}
+
+
+.about-section {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.about-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-info-item {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-info-item h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+
+.about-info-item img {
+    max-width: 100%;
+}
+
+
+.seccion-acerca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://www.laot.cl/wp-content/uploads/2022/02/an-engineer-and-building-contractor-shake-hands-over-a-construction-bid-free-photo.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+
+}
+
+.seccion-acerca::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton-acerca {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 60px;
+}
+
+
+.clientes-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.cliente-info {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.cliente-info h2 {
+    font-weight: bold;
+}
+
+.cliente-info img {
+    max-width: 100%;
+}
+
+
+.cliente-info iframe {
+    width: 100%;
+    height: 400px;
+}
+
+/* Estilos para la sección de Contacto */
+.contacto-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+.contacto-info {
+    max-width: 600px;
+    flex: 1;
+}
+
+.contacto-box {
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    max-width: 250px;
+    position: relative; /* Añadido para posicionamiento relativo */
+}
+
+.contacto-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.contacto-icon i {
+    display: block;
+}
+
+.contacto-icon i::before {
+    font-size: inherit;
+}
+
+/* Estilos para el mapa de Google */
+.map-container {
+    position: relative;
+    padding-bottom: 75%; /* Proporción para ajustar el tamaño del mapa (4:3) */
+    height: 0;
+    overflow: hidden;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.seccion-contacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://www.guzmanjodar.com/wp-content/uploads/2023/05/man-discussing-building-plan-with-architect-at-construction-site-.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+
+}
+
+.seccion-contacto::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton-contacto {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+
+.proyectos-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    background-color: #303030;
+}
+
+.proyectos-title {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.proyecto {
+    background-color: #444;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    max-width: 350px;
+    transition: transform 0.3s;
+}
+
+.proyecto h2 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.proyecto p {
+    font-size: 16px;
+}
+
+.proyecto img {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.proyecto:hover {
+    transform: scale(1.05);
+}
+
+
+.proyecto h2 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.proyecto p {
+    font-size: 16px;
+}
+
+.proyecto img {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.proyecto:hover {
+    transform: scale(1.05);
+}
+
+.seccion-proyecto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://www.canexel.es/wp-content/uploads/2021/06/casa-moderna-entramado-madera-barcelona-construccion-canexel-1.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+
+
+}
+
+.seccion-proyecto::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton-proyecto {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+
+.main-servicios {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.servicios-section {
+    width: 70%;
+}
+
+.servicios-titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.servicio {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.servicio img {
+    width: 100%;
+    height: auto;
+}
+
+.servicio-titulo {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.servicio-descripcion {
+    color: #555;
+    font-size: 14px;
+}
+
+.aside-agendar {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+}
+
+.aside-titulo-agendar {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.formulario-agendar {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-agendar label {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.formulario-agendar input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+}
+
+.formulario-agendar button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.formulario-agendar button:hover {
+    background-color: #e08e0b;
+}
+
+
+.seccion-servicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    background-image: url('https://www.intopcr.com/wp-content/uploads/2019/09/Servicios-de-construcci%C3%B3n-1024x569.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.seccion-servicio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.titulo-con-boton-servicio {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    padding: 20px; 
+}
