@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Acerca de nosotros</title>
-        <meta charset="UTF-8">
-        <link href="css/estilos.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="css/nuevo_estilo.css">
-    </head>
-
-    <body>
-        <header class="header">
-            <nav class="nav">  
-                <a href="index.html" class="logo nav-link"><img src="img/remodelaciones segura.jpg" alt="" width="182"></a>
-                <ul class="nav-menu">
-                    <li class="nav-menu-item"><a href="index.html" class="nav-link nav-menu-link">Home</a></li>
-                    <li class="nav-menu-item"><a href="Acerca_de_nosotros.html" class="nav-link nav-menu-link">Acerca</a></li>
-                    <li class="nav-menu-item"><a href="Clientes.html" class="nav-link nav-menu-link">Clientes</a></li>
-                    <li class="nav-menu-item"><a href="Contacto.html" class="nav-link nav-menu-link">Contacto</a></li>
-                    <li class="nav-menu-item"><a href="Galeria.html" class="nav-link nav-menu-link">Galeria</a></li>
-                    <li class="nav-menu-item"><a href="Proyectos.html" class="nav-link nav-menu-link">Proyectos</a></li>
-                    <li class="nav-menu-item"><a href="Servicios.html" class="nav-link nav-menu-link">Servicios</a></li>
-                    <li class="nav-menu-item"><a href="#" class="nav-link nav-menu-link agendar">Agendar</a></li>
-                </ul>
-            </nav>
-        </header>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Remodelaciones Segura</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"/>
+    <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}"><img src="img/remodelaciones segura.jpg" alt="" width="182"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a th:href="@{/Acerca_de_nosotros}" class="nav-link">Acerca</a></li>
+                <li class="nav-item"><a th:href="@{/Clientes}" class="nav-link">Clientes</a></li>
+                <li class="nav-item"><a th:href="@{/Contacto}" class="nav-link">Contacto</a></li>
+                <li class="nav-item"><a th:href="@{/Galeria}" class="nav-link">Galeria</a></li>
+                <li class="nav-item"><a th:href="@{/Proyectos}" class="nav-link">Proyectos</a></li>
+                <li class="nav-item"><a th:href="@{/Servicios}" class="nav-link">Servicios</a></li>
+                <li class="nav-item"><a th:href="@{/Agendar}" class="nav-link">Agendar</a></li>
+            </ul>
+        </div>
+        <div class="ml-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a th:href="@{/login}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+    
         <main class="main-content">
             <section class="about-section">
                 <h1>Acerca de nosotros</h1>
