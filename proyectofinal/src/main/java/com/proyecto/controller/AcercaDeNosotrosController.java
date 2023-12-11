@@ -9,7 +9,7 @@ public class AcercaDeNosotrosController {
 
     @GetMapping("/Acerca_de_nosotros")
     public String acercaDeNosotros() {
-        return "Acerca_de_nosotros";
+        return "acerca/Acerca_de_nosotros";
     }
 }
 

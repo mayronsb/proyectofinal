@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>Remodelaciones Segura</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" th:href="@{/}"><img src="img/remodelaciones segura.jpg" alt="" width="182"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a th:href="@{/}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a th:href="@{/Acerca_de_nosotros}" class="nav-link">Acerca</a></li>
+                        <li class="nav-item"><a th:href="@{/Clientes}" class="nav-link">Clientes</a></li>
+                        <li class="nav-item"><a th:href="@{/Contacto}" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><a th:href="@{/Galeria}" class="nav-link">Galeria</a></li>
+                        <li class="nav-item"><a th:href="@{/Proyectos}" class="nav-link">Proyectos</a></li>
+                        <li class="nav-item"><a th:href="@{/Servicios}" class="nav-link">Servicios</a></li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                            <a th:href="@{/Agendar}" class="nav-link">
+                                <button class="btn btn-info">
+                                    <i class="far fa-calendar-alt"></i> Agendar
+                                </button>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="ml-auto">
+                        <ul class="navbar-nav">
+                            <li th:if="${usuarioAutenticado != null}" class="nav-item">
+                                <<span th:if="${usuarioAutenticado != null}" class="nav-link bienvenido-text" style="color: red;">
+                                    <i class="fas fa-user"></i> Bienvenido,
+                                    <img th:src="${#session.getAttribute('usuarioImagen')}" alt="Imagen del Usuario">
+                                        <span th:text="${usuarioAutenticado.username}"></span>!
+                                        <span th:text="${usuarioAutenticado.authorities}"></span> <!-- Imprimir roles para depuración -->
+                                </span>
+                            </li>
+
+
+
+
+
+
+                            <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" class="btn btn-danger">
+                                        Cerrar Sesión
+                                    </button>
+                                </form>
+                            </li>
+                            <li th:unless="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                                <a th:href="@{/login}" class="nav-link">
+                                    <button class="btn btn-secondary">
+                                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                    </button>
+                                </a>
+                            </li>
+                            <li th:unless="${#authorization.expression('isAuthenticated()')}" class="nav-item">
+                                <a th:href="@{/register}" class="nav-link">
+                                    <button class="btn btn-danger">
+                                        Registrar
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+            </nav>
+        </header>
+        <section class="container mt-5">
+            <h2 class="text-center mb-4">Agendar Servicio</h2>
+            <form th:action="@{/agendar}" th:object="${agendar}" method="post" id="agendarForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ingrese su nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea th:field="*{descripcion}" class="form-control" rows="3"
+                              placeholder="Ingrese una descripción"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" th:field="*{fecha}" class="form-control" required>
+                </div>
+                <!-- Agrega más campos según sea necesario -->
+
+                <!-- Mostrar el botón solo para los usuarios con rol "user" -->
+                <button type="submit" class="btn btn-primary">Agendar Cita</button>
+            </form>
+        </section>
+
+
+
+        <section class="container mt-5" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <h2 class="text-center mb-4">Citas Programadas</h2>
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                            <th>Activo</th>
+                            <!-- Mostrar la columna de acciones solo para los usuarios con rol "admin" -->
+                            <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cita : ${citas}">
+                            <td th:text="${cita.idAgendar}"></td>
+                            <td th:text="${cita.nombre}"></td>
+                            <td th:text="${cita.descripcion}"></td>
+                            <td th:text="${#dates.format(cita.fecha, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${cita.activo}"></td>
+                            <!-- Mostrar los botones de acciones solo para los usuarios con rol "admin" -->
+                            <!-- Reemplaza el botón de eliminar por un formulario -->
+                            <td th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                                <form th:action="@{/eliminarCita}" method="post" id="eliminarCitaForm">
+                                    <input type="hidden" name="id" th:value="${cita.idAgendar}" />
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Agrega aquí tus scripts de Bootstrap y jQuery -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+        <!-- Incluir Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+        <!-- Agregar lógica para eliminar cita mediante AJAX -->
+        <script th:inline="javascript">
+            function eliminarCita(id) {
+                console.log('Intentando eliminar cita con ID: ' + id);
+                $.ajax({
+                    type: 'POST', // Utiliza POST en lugar de DELETE
+                    url: '/eliminarCita/' + id,
+                    success: function () {
+                        console.log('Cita eliminada con éxito');
+                        // Buscar y eliminar la fila de la tabla
+                        $('#citasTable tbody tr[data-id="' + id + '"]').remove();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error al eliminar la cita:', error);
+                    }
+                });
+            }
+        </script>
+
+
+        <script th:inline="javascript">
+            $(document).ready(function () {
+                $('#agendarForm').submit(function (event) {
+                    // No es necesario recargar la página después de enviar el formulario
+                    // event.preventDefault(); // Prevenir el envío del formulario predeterminado
+
+                    // Realizar la solicitud AJAX para cargar las citas programadas después de enviar el formulario
+                    $.get('/Agendar', function (data) {
+                        $('#citasProgramadasSection').html($(data).find('#citasProgramadasSection').html());
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

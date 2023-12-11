@@ -12,6 +12,6 @@ public class ProyectosController {
 
     @GetMapping("/Proyectos")
     public String proyectos() {
-        return "proyectos";
+        return "proyectos/Proyectos";
     }
 }

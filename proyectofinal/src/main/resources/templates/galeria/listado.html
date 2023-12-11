@@ -4,12 +4,13 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>TODO supply a title</title>
-        <meta charset="UTF-8"/>   
+        <meta charset="UTF-8"/>
+       
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
         
-         <content th:replace="~{layout/plantilla :: content}"/>
+        <section th:replace="~{galeria/Galeria :: principal}"/>
         
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>

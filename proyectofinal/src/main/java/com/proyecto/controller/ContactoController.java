@@ -9,7 +9,7 @@ public class ContactoController {
 
     @GetMapping("/Contacto")
     public String contacto() {
-        return "contacto";
+        return "contacto/Contacto";
     }
 }
 

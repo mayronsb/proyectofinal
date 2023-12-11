@@ -9,7 +9,7 @@ public class GaleriaController {
 
     @GetMapping("/Galeria")
     public String galeria() {
-        return "galeria";
+        return "galeria/Galeria";
     }
 }
 

@@ -27,3 +27,4 @@ function mostrarFase(fase, color) {
 }
 
 // Puedes agregar más funciones y personalizar según tus necesidades
+
