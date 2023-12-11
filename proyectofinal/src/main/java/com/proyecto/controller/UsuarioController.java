@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.proyecto.controller;
 
 import com.proyecto.domain.Usuario;
@@ -72,8 +69,11 @@ public class UsuarioController {
     public String listarUsuarios(Model model) {
         List<Usuario> usuarios = usuarioService.getUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "usuarios"; // assuming your Thymeleaf template is named "usuarios.html"
+        return "usuarios"; 
     }
+    
+    
+    
 }
 
 

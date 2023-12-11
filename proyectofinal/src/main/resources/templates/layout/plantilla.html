@@ -36,13 +36,15 @@
 
                     </ul>
 
+                    <!-- Sección para mostrar información del usuario -->
                     <div class="ml-auto">
                         <ul class="navbar-nav">
                             <li th:if="${usuarioAutenticado != null}" class="nav-item">
+                                <!-- Muestra la imagen y el nombre del usuario -->
                                 <span class="nav-link bienvenido-text" style="color: red;">
                                     <i class="fas fa-user"></i> Bienvenido,
-                                    <img th:src="${usuarioAutenticado.rutaImagen}" alt="Imagen del Usuario" class="user-image">
-                                        <span th:text="${usuarioAutenticado.nombre}"></span>!
+                                    <img th:src="${usuarioAutenticado.rutaImagen}" alt="Imagen del Usuario" class="user-image"/>
+                                    <span th:text="${usuarioAutenticado.nombre}"></span>!
                                 </span>
                             </li>
 

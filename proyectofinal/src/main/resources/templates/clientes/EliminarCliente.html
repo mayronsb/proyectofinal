@@ -78,26 +78,22 @@
 
             </nav>
         </header>
+        <div class="container">
+            <h1 class="text-center mb-5">Eliminar Cliente</h1>
+            <p class="lead">¿Estás seguro de que deseas eliminar este cliente?</p>
 
-        <section class="proyectos-section">
-            <h1 class="proyectos-title">Nuestros Proyectos Destacados</h1>
 
-            <!-- Botones de Agregar y Eliminar visibles solo para el rol de administrador -->
-            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <button class="btn btn-success" onclick="location.href = '/agregarProyecto'">Agregar Proyecto</button>
-                <button class="btn btn-danger" onclick="location.href = '/eliminarProyecto'">Eliminar Proyecto</button>
-            </div>
+            <p th:text="${cliente.nombreCompleto}"></p>
+            <p th:text="${cliente.testimonio}"></p>
 
-            <!-- Iteración sobre la lista de proyectos desde la base de datos -->
-            <div th:each="proyecto : ${proyectos}">
-                <article class="proyecto">
-                    <h2 th:text="${proyecto.nombre}"></h2>
-                    <p th:text="${proyecto.descripcion}"></p>
-                    <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" />
-                </article>
-            </div>
-        </section>
+        
+            <form th:action="@{/eliminarCliente}" method="post">
+                <input type="hidden" name="id" th:value="${cliente.idCliente}" />
+                <button type="submit" class="btn btn-danger">Eliminar Cliente</button>
+            </form>
 
+            <a th:href="@{/Clientes}" class="btn btn-secondary">Cancelar</a>
+        </div>
         <div class="politicas-redes">
             <div class="politicas">
                 <p>&copy; 2023 Remodelaciones Segura</p>
@@ -114,7 +110,5 @@
 
         </div>
 
-
-    </body>
-
 </html>
+

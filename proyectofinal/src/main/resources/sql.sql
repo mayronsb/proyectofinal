@@ -28,7 +28,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 /*Se insertan 3 registros en la tabla cliente como ejemplo */
 INSERT INTO remodelaciones.usuario (id_usuario, username,password,nombre, apellidos, correo, telefono,ruta_imagen,activo) VALUES 
 (1,'admin','$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.','Juan', 'Castro Mora',    'jcastro@gmail.com',    '4556-8978', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Juan_Diego_Madrigal.jpg/250px-Juan_Diego_Madrigal.jpg',true),
-(2,'cliente','$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi','Rebeca',  'Contreras Mora', 'acontreras@gmail.com', '5456-8789','https://upload.wikimedia.org/wikipedia/commons/0/06/Photo_of_Rebeca_Arthur.jpg',true);
+(2,'cliente','$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeid_usuariousernameusernameqZL5uzgCJ0lQRi','Rebeca',  'Contreras Mora', 'acontreras@gmail.com', '5456-8789','https://upload.wikimedia.org/wikipedia/commons/0/06/Photo_of_Rebeca_Arthur.jpg',true);
 
 
 create table remodelaciones.rol (
@@ -94,7 +94,7 @@ CREATE TABLE remodelaciones.agendar (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
--- Insertar algunas citas de ejemplo
+
 INSERT INTO remodelaciones.agendar (nombre, descripcion, fecha, activo)
 VALUES
 ('Sara Perez', 'Servicio de Remodelacion de Vivienda', '2023-12-15', true),
@@ -102,3 +102,60 @@ VALUES
 ('Sofia Araya', 'Servicio de Tuberia', '2023-12-25', true);
 
 
+CREATE TABLE remodelaciones.acerca_de_nosotros (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255),
+    contenido TEXT,
+    imagen_url VARCHAR(255)
+);
+
+INSERT INTO remodelaciones.acerca_de_nosotros (titulo, contenido, imagen_url) 
+VALUES 
+('Nuestros Comienzos', 'Los comienzos de Remodelaciones Segura fueron modestos pero llenos de determinación. En una pequeña oficina en el centro de Costa Rica, un equipo de visionarios con una pasión compartida por la construcción y la renovación comenzó su viaje. Lo que comenzó como una idea audaz pronto se convirtió en una empresa establecida, y nuestra dedicación inquebrantable a la calidad y la satisfacción del cliente nos catapultó hacia el éxito.', 'https://www.eltiempo.com/files/article_multimedia/uploads/2019/09/11/5d7973dc1645d.jpeg'),
+('El Compromiso con la Excelencia', 'En Remodelaciones Segura, creemos que la excelencia es un viaje interminable. Nuestro compromiso constante con la perfección y la mejora continua ha sido el faro que ha guiado cada proyecto que hemos emprendido. Desde la remodelación de pequeñas cocinas hasta la construcción de majestuosas viviendas, cada uno de nuestros proyectos es una manifestación de nuestro compromiso con la calidad y la artesanía.', 'img/construccion.jpg'),
+('Un Equipo de Expertos', 'Nuestro equipo es el corazón y el alma de Remodelaciones Segura. Cada miembro aporta una combinación única de habilidades, experiencia y dedicación a la mesa. Los arquitectos y diseñadores de interiores infunden vida en los espacios, los constructores y plomeros garantizan que todo funcione a la perfección, y nuestros especialistas en techos y estructuras aseguran que tu hogar esté protegido de las inclemencias del tiempo.', 'img/Industria-de-la-construccion-podria-repuntar-mas-de-5-en-SLP.jpg');
+
+-- Crear la tabla de clientes
+CREATE TABLE remodelaciones.cliente (
+    id_cliente INT NOT NULL AUTO_INCREMENT,
+    nombre_completo VARCHAR(100) NOT NULL,
+    testimonio TEXT,
+    imagen_url VARCHAR(255),
+    video_url VARCHAR(255),
+    PRIMARY KEY (id_cliente)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insertar algunos clientes de ejemplo
+INSERT INTO remodelaciones.cliente (nombre_completo, testimonio, imagen_url, video_url)
+VALUES
+('Rita Rojas Salazar', 'Remodelaciones Segura transformó por completo mi hogar. Desde el primer día, su equipo demostró un compromiso excepcional con la calidad y la atención al detalle. Estoy encantada con el resultado final y no puedo recomendarlos lo suficiente.', 'img/cliente1.jpg', 'https://www.youtube.com/embed/bOic8a8jXrE'),
+('Fabián Soto Perez', 'Como propietario de un negocio, confié en Remodelaciones Segura para llevar a cabo una importante remodelación de mis instalaciones. Su profesionalismo y capacidad para cumplir con los plazos me impresionaron. Ahora tengo un espacio que refleja la visión de mi empresa.', 'img/cliente2.jpg', 'https://www.youtube.com/embed/aFgxPA89abA'),
+('Wilbert Muñoz Marín', 'Después de una búsqueda exhaustiva, elegimos a Remodelaciones Segura para construir nuestra casa de ensueño. Su atención meticulosa a los detalles y su enfoque en la calidad nos dejaron sin palabras. Nuestra casa es un testimonio de su habilidad y compromiso.', 'img/cliente3.jpg', 'https://www.youtube.com/embed/M_53B2bQcKU');
+
+-- Crear la tabla de proyectos
+CREATE TABLE remodelaciones.proyecto (
+  id_proyecto INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  imagen_url VARCHAR(255),
+  ancho_imagen INT,
+  PRIMARY KEY (id_proyecto)
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+-- Insertar algunos proyectos de ejemplo
+INSERT INTO remodelaciones.proyecto (nombre, descripcion, imagen_url, ancho_imagen)
+VALUES
+('Residencia Moderna en las Montañas', 'Descubre nuestra impresionante casa moderna enclavada en medio de las montañas.', 'img/montaña.jpg', 500),
+('Renovación de una Antigua Casa Colonial', 'Revive la historia con nuestra meticulosa renovación de una antigua casa colonial.', 'img/casa colonial.jpg', 500),
+('Construcción de una Villa de Lujo', 'Explora nuestra villa de lujo personalizada con detalles exclusivos y comodidades excepcionales.', 'img/villa de lujo.jpg', 500);
+
+SELECT * FROM remodelaciones.usuario;
+SELECT * FROM remodelaciones.rol;
+SELECT * FROM remodelaciones.agendar;
+SELECT * FROM remodelaciones.proyecto;
+SELECT * FROM remodelaciones.cliente;
+SELECT * FROM remodelaciones.acerca_de_nosotros;
+SELECT * FROM remodelaciones.servicio;
+SELECT * FROM remodelaciones.usuario_servicio;

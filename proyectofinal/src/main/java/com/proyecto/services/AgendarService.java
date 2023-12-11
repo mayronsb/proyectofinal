@@ -3,6 +3,7 @@ package com.proyecto.services;
 import com.proyecto.domain.Agendar;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AgendarService {
 
@@ -10,6 +11,9 @@ public interface AgendarService {
 
     Agendar agendarCita(Agendar agendar);
 
-    // Nuevo método para eliminar cita por ID
     void eliminarCita(Long id);
+
+    Optional<Agendar> obtenerCitaPorId(Long id);
+
+    Agendar guardarModificacionCita(Agendar cita);
 }

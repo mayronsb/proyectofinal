@@ -25,19 +25,19 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute Usuario usuario, Model model) {
         try {
-            // Check if the username is already taken
+         
             if (usuarioService.getUsuarioPorUsername(usuario.getUsername()) != null) {
-                // Username is already taken, handle appropriately
+              
                 model.addAttribute("error", "Username is already taken");
                 return "register/Register";
             }
 
-            // Codificar la contraseña antes de guardar
+      
             String encodedPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
             usuario.setPassword(encodedPassword);
 
             usuarioService.save(usuario, true);
-            // Redirect to a success page or login page
+
             return "redirect:/login";
         } catch (Exception e) {
             // Handle other exceptions

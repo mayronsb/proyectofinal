@@ -80,22 +80,45 @@
         </header>
 
         <section class="proyectos-section">
-            <h1 class="proyectos-title">Nuestros Proyectos Destacados</h1>
+        <div class="container">
+            <h1 class="proyectos-title">Agregar Nuevo Proyecto</h1>
 
-            <!-- Botones de Agregar y Eliminar visibles solo para el rol de administrador -->
-            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <button class="btn btn-success" onclick="location.href = '/agregarProyecto'">Agregar Proyecto</button>
-                <button class="btn btn-danger" onclick="location.href = '/eliminarProyecto'">Eliminar Proyecto</button>
-            </div>
+            <form th:action="@{/guardarProyecto}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required/>
+                    <div class="invalid-feedback">
+                        Por favor, proporciona un nombre para el proyecto.
+                    </div>
+                </div>
 
-            <!-- Iteración sobre la lista de proyectos desde la base de datos -->
-            <div th:each="proyecto : ${proyectos}">
-                <article class="proyecto">
-                    <h2 th:text="${proyecto.nombre}"></h2>
-                    <p th:text="${proyecto.descripcion}"></p>
-                    <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" />
-                </article>
-            </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    <div class="invalid-feedback">
+                        Por favor, proporciona una descripción para el proyecto.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" class="form-control-file" id="imagen" name="imagen"required/>
+                    <div class="invalid-feedback">
+                        Por favor, selecciona una imagen para el proyecto.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="anchoImagen">Ancho de la Imagen:</label>
+                    <input type="number" class="form-control" id="anchoImagen" name="anchoImagen" required/>
+                    <div class="invalid-feedback">
+                        Por favor, proporciona el ancho de la imagen.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Guardar Proyecto</button>
+            </form>
+        </div>
         </section>
 
         <div class="politicas-redes">
@@ -118,3 +141,4 @@
     </body>
 
 </html>
+

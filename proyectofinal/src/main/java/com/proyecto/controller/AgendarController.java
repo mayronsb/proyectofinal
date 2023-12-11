@@ -5,6 +5,7 @@ import com.proyecto.domain.Agendar;
 import com.proyecto.services.AgendarService;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -32,7 +33,7 @@ public class AgendarController {
         List<Agendar> agendarList = agendarService.obtenerTodasCitas();
         model.addAttribute("citas", agendarList);
 
-        // Agregar un nuevo objeto Agendar para el formulario
+   
         model.addAttribute("agendar", new Agendar());
 
         return "agendar/Agendar";
@@ -41,11 +42,11 @@ public class AgendarController {
     @PostMapping("/agendar")
     public String agendarCita(@Valid @ModelAttribute("agendar") Agendar agendar, BindingResult result) {
         if (result.hasErrors()) {
-            // Manejar errores de validación
+           
             return "agendar/Agendar";
         }
 
-        // Lógica para guardar en la base de datos
+       
         agendarService.agendarCita(agendar);
 
         return "redirect:/Agendar";
@@ -53,38 +54,69 @@ public class AgendarController {
 
     @GetMapping("/CitasProgramadas")
     public String mostrarCitasProgramadas(Model model) {
-        // Verifica si el usuario tiene el rol ROLE_ADMIN
+  
         if (hasRoleAdmin()) {
-            // Lógica para obtener citas programadas y mostrarlas en la vista
+          
             List<Agendar> citasProgramadas = agendarService.obtenerTodasCitas();
             model.addAttribute("citas", citasProgramadas);
             return "citasProgramadas";
         } else {
-            // Redirige a una página de acceso no autorizado
+        
             return "accessDenied";
         }
     }
 
     @PostMapping("/eliminarCita")
     public String eliminarCita(@RequestParam Long id, Model model) {
-        // Lógica para eliminar la cita con el id proporcionado
+        
         agendarService.eliminarCita(id);
 
-        // Actualizar la lista de citas y volver a la página "agendar/Agendar"
+    
         List<Agendar> citasProgramadas = agendarService.obtenerTodasCitas();
         model.addAttribute("citas", citasProgramadas);
 
-        // Agregar un nuevo objeto Agendar para el formulario
+
         model.addAttribute("agendar", new Agendar());
 
         return "agendar/Agendar";
     }
 
-    // Método de utilidad para verificar si el usuario tiene el rol ROLE_ADMIN
+
     private boolean hasRoleAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities().stream()
                 .anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"));
+    }
+
+    @GetMapping("/modificarCita")
+    public String mostrarFormularioModificarCita(@RequestParam Long id, Model model) {
+        // Lógica para obtener la cita por ID y agregarla al modelo
+        Optional<Agendar> optionalCita = agendarService.obtenerCitaPorId(id);
+
+        if (optionalCita.isPresent()) {
+            Agendar cita = optionalCita.get();
+            model.addAttribute("cita", cita);
+
+          
+            return "agendar/ModificarCita";
+        } else {
+           
+            return "redirect:/Agendar";
+        }
+    }
+
+    @PostMapping("/guardarModificacion")
+    public String guardarModificacionCita(@Valid @ModelAttribute("cita") Agendar cita, BindingResult result) {
+        if (result.hasErrors()) {
+          
+            return "agendar/ModificarCita";
+        }
+
+     
+        agendarService.guardarModificacionCita(cita);
+
+       
+        return "redirect:/Agendar";
     }
 
 }

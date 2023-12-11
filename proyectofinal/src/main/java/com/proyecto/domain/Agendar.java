@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.proyecto.domain;
 
 import jakarta.persistence.Column;
@@ -37,11 +34,11 @@ public class Agendar {
     @Column(name = "activo")
     private Boolean activo;
 
-    // Constructor predeterminado
+  
     public Agendar() {
     }
 
-    // Constructor con parámetros
+
     public Agendar(String nombre, String descripcion, Date fecha, Boolean activo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -49,7 +46,7 @@ public class Agendar {
         this.activo = activo;
     }
 
-    // Getters y setters
+    
     public Long getIdAgendar() {
         return idAgendar;
     }
@@ -90,5 +87,5 @@ public class Agendar {
         this.activo = activo;
     }
 
-    // Puedes agregar más métodos según sea necesario
+
 }

@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface ServicioDao extends JpaRepository<Servicio, Long> {
-    // Puedes agregar consultas personalizadas aquí si es necesario
+    
 }
 

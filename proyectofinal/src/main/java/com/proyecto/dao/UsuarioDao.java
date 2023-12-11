@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioDao extends JpaRepository<Usuario, Long> {
 
-    //Ejemplo #1 de un metodo utilizando metodos Query
+  
     public Usuario findByUsername(String username);
 
     Usuario findByUsernameAndPassword(String username, String Password);

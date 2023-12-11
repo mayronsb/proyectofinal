@@ -43,7 +43,7 @@
                                     <i class="fas fa-user"></i> Bienvenido,
                                     <img th:src="${#session.getAttribute('usuarioImagen')}" alt="Imagen del Usuario">
                                         <span th:text="${usuarioAutenticado.username}"></span>!
-                                        <span th:text="${usuarioAutenticado.authorities}"></span> <!-- Imprimir roles para depuración -->
+                                        <span th:text="${usuarioAutenticado.authorities}"></span> 
                                 </span>
                             </li>
 
@@ -95,9 +95,7 @@
                     <label for="fecha">Fecha:</label>
                     <input type="date" th:field="*{fecha}" class="form-control" required>
                 </div>
-                <!-- Agrega más campos según sea necesario -->
 
-                <!-- Mostrar el botón solo para los usuarios con rol "user" -->
                 <button type="submit" class="btn btn-primary">Agendar Cita</button>
             </form>
         </section>
@@ -116,7 +114,7 @@
                             <th>Descripción</th>
                             <th>Fecha</th>
                             <th>Activo</th>
-                            <!-- Mostrar la columna de acciones solo para los usuarios con rol "admin" -->
+
                             <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Acciones</th>
                         </tr>
                     </thead>
@@ -127,42 +125,42 @@
                             <td th:text="${cita.descripcion}"></td>
                             <td th:text="${#dates.format(cita.fecha, 'yyyy-MM-dd')}"></td>
                             <td th:text="${cita.activo}"></td>
-                            <!-- Mostrar los botones de acciones solo para los usuarios con rol "admin" -->
-                            <!-- Reemplaza el botón de eliminar por un formulario -->
                             <td th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                                 <form th:action="@{/eliminarCita}" method="post" id="eliminarCitaForm">
                                     <input type="hidden" name="id" th:value="${cita.idAgendar}" />
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
+                               
+                                <form th:action="@{/modificarCita}" method="get" id="modificarCitaForm" th:if="${cita != null}">
+                                    <input type="hidden" name="id" th:value="${cita.idAgendar}" />
+                                    <button type="submit" class="btn btn-primary">Modificar</button>
+                                </form>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Agrega aquí tus scripts de Bootstrap y jQuery -->
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 
-        <!-- Incluir Bootstrap JS -->
+      
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-        <!-- Agregar lógica para eliminar cita mediante AJAX -->
+       
         <script th:inline="javascript">
             function eliminarCita(id) {
                 console.log('Intentando eliminar cita con ID: ' + id);
                 $.ajax({
-                    type: 'POST', // Utiliza POST en lugar de DELETE
+                    type: 'POST', 
                     url: '/eliminarCita/' + id,
                     success: function () {
                         console.log('Cita eliminada con éxito');
-                        // Buscar y eliminar la fila de la tabla
+                       
                         $('#citasTable tbody tr[data-id="' + id + '"]').remove();
                     },
                     error: function (xhr, status, error) {
@@ -176,10 +174,7 @@
         <script th:inline="javascript">
             $(document).ready(function () {
                 $('#agendarForm').submit(function (event) {
-                    // No es necesario recargar la página después de enviar el formulario
-                    // event.preventDefault(); // Prevenir el envío del formulario predeterminado
-
-                    // Realizar la solicitud AJAX para cargar las citas programadas después de enviar el formulario
+                   
                     $.get('/Agendar', function (data) {
                         $('#citasProgramadasSection').html($(data).find('#citasProgramadasSection').html());
                     });

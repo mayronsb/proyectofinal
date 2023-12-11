@@ -39,10 +39,11 @@
                     <div class="ml-auto">
                         <ul class="navbar-nav">
                             <li th:if="${usuarioAutenticado != null}" class="nav-item">
-                                <span class="nav-link bienvenido-text" style="color: red;">
+                                <<span th:if="${usuarioAutenticado != null}" class="nav-link bienvenido-text" style="color: red;">
                                     <i class="fas fa-user"></i> Bienvenido,
                                     <img th:src="${#session.getAttribute('usuarioImagen')}" alt="Imagen del Usuario">
                                         <span th:text="${usuarioAutenticado.username}"></span>!
+                                        <span th:text="${usuarioAutenticado.authorities}"></span> 
                                 </span>
                             </li>
 
@@ -79,23 +80,31 @@
             </nav>
         </header>
 
-        <section class="proyectos-section">
-            <h1 class="proyectos-title">Nuestros Proyectos Destacados</h1>
-
-            <!-- Botones de Agregar y Eliminar visibles solo para el rol de administrador -->
-            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <button class="btn btn-success" onclick="location.href = '/agregarProyecto'">Agregar Proyecto</button>
-                <button class="btn btn-danger" onclick="location.href = '/eliminarProyecto'">Eliminar Proyecto</button>
-            </div>
-
-            <!-- Iteración sobre la lista de proyectos desde la base de datos -->
-            <div th:each="proyecto : ${proyectos}">
-                <article class="proyecto">
-                    <h2 th:text="${proyecto.nombre}"></h2>
-                    <p th:text="${proyecto.descripcion}"></p>
-                    <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" />
-                </article>
-            </div>
+        <section class="container mt-5">
+            <h2 class="text-center mb-4">Modificar Cita</h2>
+            <form th:action="@{/guardarModificacion}" th:object="${cita}" method="post" id="modificarCitaForm">
+                <input type="hidden" th:field="*{idAgendar}" />
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ingrese su nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea th:field="*{descripcion}" class="form-control" rows="3" placeholder="Ingrese una descripción"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" th:field="*{fecha}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="activo">Activo:</label>
+                    <div class="form-check">
+                        <input type="checkbox" th:field="*{activo}" class="form-check-input">
+                            <label class="form-check-label" for="activo">¿Activo?</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Modificación</button>
+            </form>
         </section>
 
         <div class="politicas-redes">
@@ -113,8 +122,5 @@
 
 
         </div>
-
-
-    </body>
 
 </html>

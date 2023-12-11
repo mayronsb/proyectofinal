@@ -78,66 +78,52 @@
 
             </nav>
         </header>
-    
+
         <main class="main-content">
             <section class="about-section">
-                <h1>Acerca de nosotros</h1>
-                <div class="about-info">
-                    <div class="about-info-item">
-                        <h2>Nuestros Comienzos</h2>
-                        <p>Los comienzos de Remodelaciones Segura fueron modestos pero llenos de determinación. En una pequeña
-                            oficina en el centro de Costa Rica, un equipo de visionarios con una pasión compartida por la
-                            construcción y la renovación comenzó su viaje. Lo que comenzó como una idea audaz pronto se
-                            convirtió en una empresa establecida, y nuestra dedicación inquebrantable a la calidad y la
-                            satisfacción del cliente nos catapultó hacia el éxito.</p>
-                        <img src="img/villa de lujo.jpg" alt="Nuestros Comienzos">
+                <div class="container">
+                    <h1 class="text-center mb-5">Acerca de nosotros</h1>
+                    <div class="row">
+                        <!-- Itera sobre los datos y muestra cada elemento en una tarjeta de la galería -->
+                        <div th:each="dato : ${datosAcercaDeNosotros}" class="col-md-4 mb-4">
+                            <div class="card">
+                                <img th:src="${dato.imagenUrl}" alt="Imagen del Dato" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${dato.titulo}"></h5>
+                                        <p class="card-text" th:text="${dato.contenido}"></p>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="about-info-item">
-                        <h2>El Compromiso con la Excelencia</h2>
-                        <p>En Remodelaciones Segura, creemos que la excelencia es un viaje interminable. Nuestro compromiso
-                            constante con la perfección y la mejora continua ha sido el faro que ha guiado cada proyecto que
-                            hemos emprendido. Desde la remodelación de pequeñas cocinas hasta la construcción de majestuosas
-                            viviendas, cada uno de nuestros proyectos es una manifestación de nuestro compromiso con la
-                            calidad y la artesanía.</p>
-                        <img src="img/construccion.jpg" alt="El Compromiso con la Excelencia">
-
-                    </div>
-
-                    <div class="about-info-item">
-                        <h2>Un Equipo de Expertos</h2>
-                        <p>Nuestro equipo es el corazón y el alma de Remodelaciones Segura. Cada miembro aporta una combinación
-                            única de habilidades, experiencia y dedicación a la mesa. Los arquitectos y diseñadores de interiores
-                            infunden vida en los espacios, los constructores y plomeros garantizan que todo funcione a la
-                            perfección, y nuestros especialistas en techos y estructuras aseguran que tu hogar esté protegido de
-                            las inclemencias del tiempo.</p>
-                        <img src="img/Industria-de-la-construccion-podria-repuntar-mas-de-5-en-SLP.jpg" alt="Un Equipo de Expertos">
-                    </div>
-                </div>
-            </section>
-
-            <section class="seccion-acerca">
-                <div class="titulo-con-boton-acerca">
-                    <h2 class="inicio">No olvides solicitar tu servicio!</h2>
                 </div>
             </section>
         </main>
+
+
+
+
+        <section class="seccion-acerca">
+            <div class="titulo-con-boton-acerca">
+                <h2 class="inicio">No olvides solicitar tu servicio!</h2>
+            </div>
+        </section>
+        </main>
     </body>
-    
+
     <div class="politicas-redes">
-            <div class="politicas">
-                <p>&copy; 2023 Remodelaciones Segura</p>
-                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Support</a></p>
-                <p class="politicas-frase">Remodelaciones Segura - Tu socio de confianza en construcciones y remodelaciones en Costa Rica.</p>
-            </div>
-
-            <div class="redes-sociales">
-                <a href="https://www.facebook.com/profile.php?id=100057123503909" class="redes-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com" class="redes-icon"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.twitter.com" class="redes-icon"><i class="fab fa-twitter"></i></a>
-            </div>
-
-
+        <div class="politicas">
+            <p>&copy; 2023 Remodelaciones Segura</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Support</a></p>
+            <p class="politicas-frase">Remodelaciones Segura - Tu socio de confianza en construcciones y remodelaciones en Costa Rica.</p>
         </div>
+
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com/profile.php?id=100057123503909" class="redes-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com" class="redes-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com" class="redes-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+
+
+    </div>
 
 </html>

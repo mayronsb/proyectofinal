@@ -80,23 +80,33 @@
         </header>
 
         <section class="proyectos-section">
-            <h1 class="proyectos-title">Nuestros Proyectos Destacados</h1>
+            <div class="container">
+                <h1 class="proyectos-title">Eliminar Proyecto</h1>
 
-            <!-- Botones de Agregar y Eliminar visibles solo para el rol de administrador -->
-            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <button class="btn btn-success" onclick="location.href = '/agregarProyecto'">Agregar Proyecto</button>
-                <button class="btn btn-danger" onclick="location.href = '/eliminarProyecto'">Eliminar Proyecto</button>
-            </div>
-
-            <!-- Iteración sobre la lista de proyectos desde la base de datos -->
-            <div th:each="proyecto : ${proyectos}">
-                <article class="proyecto">
-                    <h2 th:text="${proyecto.nombre}"></h2>
-                    <p th:text="${proyecto.descripcion}"></p>
-                    <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" />
-                </article>
+                <!-- Lista de proyectos para eliminar -->
+                <ul class="list-group">
+                    <li th:each="proyecto : ${proyectos}" class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 th:text="${proyecto.nombre}"></h5>
+                                <p th:text="${proyecto.descripcion}"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" class="img-fluid"/>
+                            </div>
+                            <div class="col-md-2">
+                                <!-- Agrega un formulario para enviar la solicitud de eliminación -->
+                                <form th:action="@{/eliminarProyecto}" method="post">
+                                    <input type="hidden" name="proyectoId" th:value="${proyecto.idProyecto}" />
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
+
 
         <div class="politicas-redes">
             <div class="politicas">
@@ -118,3 +128,4 @@
     </body>
 
 </html>
+

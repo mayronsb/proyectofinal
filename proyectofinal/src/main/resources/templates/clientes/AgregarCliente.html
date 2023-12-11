@@ -78,26 +78,46 @@
 
             </nav>
         </header>
+        
+        <main class="main-content">
+            <section class="agregar-cliente-section">
+                <div class="container">
+                    <h1 class="text-center mb-5">Agregar Nuevo Cliente</h1>
 
-        <section class="proyectos-section">
-            <h1 class="proyectos-title">Nuestros Proyectos Destacados</h1>
+              
+                    <form th:action="@{/guardarCliente}" method="post">
+                      
 
-            <!-- Botones de Agregar y Eliminar visibles solo para el rol de administrador -->
-            <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <button class="btn btn-success" onclick="location.href = '/agregarProyecto'">Agregar Proyecto</button>
-                <button class="btn btn-danger" onclick="location.href = '/eliminarProyecto'">Eliminar Proyecto</button>
-            </div>
+                       
+                        <div class="form-group">
+                            <label for="nombreCompleto">Nombre Completo:</label>
+                            <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required/>
+                        </div>
 
-            <!-- Iteración sobre la lista de proyectos desde la base de datos -->
-            <div th:each="proyecto : ${proyectos}">
-                <article class="proyecto">
-                    <h2 th:text="${proyecto.nombre}"></h2>
-                    <p th:text="${proyecto.descripcion}"></p>
-                    <img th:src="${proyecto.imagenUrl}" th:alt="${proyecto.nombre}" th:width="${proyecto.anchoImagen}" />
-                </article>
-            </div>
-        </section>
+                        <div class="form-group">
+                            <label for="testimonio">Testimonio:</label>
+                            <textarea class="form-control" id="testimonio" name="testimonio" required></textarea>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="imagenUrl">URL de la Imagen:</label>
+                            <input type="text" class="form-control" id="imagenUrl" name="imagenUrl" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="videoUrl">URL del Video:</label>
+                            <input type="text" class="form-control" id="videoUrl" name="videoUrl" required/>
+                        </div>
+
+                     
+                        <button type="submit" class="btn btn-primary">
+                            Guardar Cliente
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
         <div class="politicas-redes">
             <div class="politicas">
                 <p>&copy; 2023 Remodelaciones Segura</p>
@@ -114,7 +134,5 @@
 
         </div>
 
-
-    </body>
-
 </html>
+
